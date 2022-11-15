@@ -76,7 +76,6 @@ def select_error(message):
             )
         markup.add("Error 707", "Error 801", "Error 808", "Error 907", "Error 908", "Error 909", "Error 107", "Error 089", "Error 404", "Error 500" "Error 707")
         msg = bot.send_message(message.chat.id, '¿Que error presenta?', reply_markup=markup)
-        #Registro de Respuestas en una Función
         bot.register_next_step_handler(msg, error)
 
 

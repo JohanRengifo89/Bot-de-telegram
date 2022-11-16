@@ -1,6 +1,6 @@
 from config import *
-import telebot
-from telebot.types import ReplyKeyboardMarkup
+import telebot #api Telegram
+from telebot.types import ReplyKeyboardMarkup #Botones
 from telebot.types import ForceReply
 #inicio Bot
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
@@ -81,15 +81,7 @@ def select_error(message):
 
 
 #Respuestas a Comandos de Error ############
-#def commands_error(message):
- #   if message.text != "error_707":
-  #      msg = bot.send_message(message.chat.id, "Este es un error de Servicio no encontrado")
-   # elif message.text != "error_801":
-    #    msg = bot.send_message(message.chat.id, "Erro 801")
-   # elif message.text != "error_808":
-    #    msg = bot.send_message(message.chat.id, "Error 808")
-   # else:
-    #    msg = bot.send_message(message.chat.id, "No presentas errores")*/
+#if - Else - elif--:
 ########Fin a Comando Error ################
 
 

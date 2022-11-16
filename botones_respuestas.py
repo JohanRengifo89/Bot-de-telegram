@@ -11,11 +11,12 @@ usuarios = {}
 @bot.message_handler(commands=['start', 'ayuda', 'help'])
 def cmd_start(message):
     #Comandos disponibles
-    bot.send_message(message.chat.id, "Hola, soy Katen tu Asistente Virtual.\n Para proceder a ayudarte, Porfavor dime ¿Quien eres?. \n  Acontinuación Completa la información Solicitada")
-    bot.send_message(message.chat.id, " Usa el Comando /iniciemos para completar la información")
+    bot.send_message(message.chat.id, " Este Bot se encuentra en estado de Desarrollo.\nPuede presentar fallas en su Funcionamiento. Aun no es recomendable su uso.")
+    bot.send_message(message.chat.id, "Hola, soy Karen tu Asistente Virtual.\n Para proceder a ayudarte, Porfavor dime ¿Quien eres?. \n A continuación Completa la información Solicitada")
+    bot.send_message(message.chat.id, " Usa el Comando /iniciar para completar la información")
 
-@bot.message_handler(commands=['iniciemos'])
-def cmd_start(message):
+@bot.message_handler(commands=['iniciar'])
+def cmd_init(message):
     #Comando Nombre
     markup = ForceReply()
     msg = bot.send_message(message.chat.id, "¿Como te llamas? \n Digita Tu Nombre completo", reply_markup=markup)
@@ -53,7 +54,7 @@ def preguntar_sexo(message):
         msg = bot.send_message(message.chat.id, 'Error: Indique en Numeros enteros su edad Correspondiente')
         bot.register_next_step_handler(msg, preguntar_sexo)
     else:
-        usuarios[message.chat.id]["edad"] = int(message.text)
+        usuarios[message.chat.id]["edad"] = message.text
         markup = ReplyKeyboardMarkup(
             one_time_keyboard=True,
             input_field_placeholder="Escoja su Sexo",
@@ -64,22 +65,28 @@ def preguntar_sexo(message):
         bot.register_next_step_handler(msg, select_error)
 
 def select_error(message):
-    if message-text != "Masculino" and message.text != "Femenino" and message.text != "Otro" and message.text != "Prefierlo No decirlo":
+    if message.text != "Masculino" and message.text != "Femenino" and message.text != "Otro" and message.text != "Prefierlo No decirlo":
         msg = bot.send_message(message.chat_id, 'ERROR: Sexo no valido.\n Seleccione una Opción')
         bot.register_next_step_handler(msg, preguntar_sexo)
     else:
-        usuarios[message.chat.id]["select_error"] = int(message.text)
+        usuarios[message.chat.id]["select_error"] = message.text
         markup = ReplyKeyboardMarkup(
             one_time_keyboard=True,
             input_field_placeholder="Escoja el error presentado",
             resize_keyboard=True
             )
-        markup.add("Error 707", "Error 801", "Error 808", "Error 907", "Error 908", "Error 909", "Error 107", "Error 089", "Error 404", "Error 500" "Error 707")
-        msg = bot.send_message(message.chat.id, '¿Que error presenta?', reply_markup=markup)
-        bot.register_next_step_handler(msg, error)
+        markup.add("error_707", "error_801", "error_808", "error_907", "error_908", "error>_909", "error_107", "error_089", "error_404", "error_500")
+        msg = bot.send_message(message.chat.id, '¿Que error presentas dentro de la plataforma?', reply_markup=markup)
+        bot.register_next_step_handler(msg, commands_error)
 
 
-
+#Respuestas a Comandos de Error ############
+def commands_error(message):
+    if message.text != "":
+        print()
+    else:
+        print()
+########Fin a Comando Error ################
 
 
 #MAIN ####################

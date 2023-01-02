@@ -3,6 +3,7 @@ import telebot
 from telebot.types import ReplyKeyboardMarkup
 from telebot.types import ForceReply
 #inicio Bot
+#La Variable de Telegram Token hace referencia al Token que ubica nuestro BOT en las BD de Telegram
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 #Variable global
 usuarios = {}
@@ -75,23 +76,48 @@ def select_error(message):
             input_field_placeholder="Escoja el error presentado",
             resize_keyboard=True
             )
-        markup.add("error_707", "error_801", "error_808", "error_907", "error_908", "error>_909", "error_107", "error_089", "error_404", "error_500")
-        msg = bot.send_message(message.chat.id, '¿Que error presentas dentro de la plataforma?', reply_markup=markup)
+        markup.add("error_707", "error_801", "error_808", "error_907", "error_908", "errorr_909", "error_107", "error_089", "error_404", "error_500")
+        msg = bot.send_message(message.chat.id, '¿Que error presentas dentro de la platafora?', reply_markup=markup)
         bot.register_next_step_handler(msg, commands_error)
-
+#El paso anterior Muestra en Pantalla Los Botones de Errores
+# Dependiendo del Id del Boton Muestra la Respuesta Correspondiente
 
 #Respuestas a Comandos de Error ############
-#def commands_error(message):
- #   if message.text != "error_707":
-  #      msg = bot.send_message(message.chat.id, "Este es un error de Servicio no encontrado")
-   # elif message.text != "error_801":
-    #    msg = bot.send_message(message.chat.id, "Erro 801")
-   # elif message.text != "error_808":
-    #    msg = bot.send_message(message.chat.id, "Error 808")
-   # else:
-    #    msg = bot.send_message(message.chat.id, "No presentas errores")*/
+#Para determinar en la sentencia el procedimiento correspondiente. Solicitar el Manual de Usuario
+def commands_error(message):
+    if message.text != "error_707":
+        msg = bot.send_message(message.chat.id, "Este es un error de Servicio no encontrado")
+    elif message.text != "error_801":
+        msg = bot.send_message(message.chat.id, "Erro 801")
+    elif message.text != "error_808":
+        msg = bot.send_message(message.chat.id, "Error 808")
+    elif message.text != "error_907":
+        msg = bot.send_message(message.chat,id, "Error 907")
+    elif message.text != "error_908":
+        msg = bot.send_message(message.chat,id, "Error 908")
+    elif message.text != "error_909":
+        msg = bot.send_message(message.chat,id, "Error 909")
+    elif message.text != "error_107":
+        msg = bot.send_message(message.chat,id, "Error 107")
+    elif message.text != "error_089":
+        msg = bot.send_message(message.chat,id, "Error 089")
+    elif message.text != "error_404":
+        msg = bot.send_message(message.chat,id, "Error 404")
+    elif message.text != "error_500":
+        msg = bot.send_message(message.chat,id, "Error 500")
+    else:
+        msg = bot.send_message(message.chat.id, "No presentas errores.\n Te Invito a seguir disfrutando de la aplicacón")
 ########Fin a Comando Error ################
 
+# En el footer es necesario saber la satisfación del usuario
+# Crear Encuenta Breve de Satisfacción
+
+####### Inicio Footer ##############
+
+def commands_finbot(message):
+    msg = bot.send_message(message.chat.id, "Espero Haber Resuelto tu Problema.")
+
+####### Fin Footer #################
 
 #MAIN ####################
 if __name__ == '__main__':

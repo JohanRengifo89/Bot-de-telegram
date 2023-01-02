@@ -21,8 +21,8 @@ def cmd_init(message):
     #Comando Nombre
     markup = ForceReply()
     msg = bot.send_message(message.chat.id, "¿Como te llamas? \n Digita Tu Nombre completo", reply_markup=markup)
-    bot.register_next_step_handler(msg, preguntar_cur)
-    
+    bot.register_next_step_handler(msg, preguntar_cur) # En su cambio cambiamos el "preguntar_cur" a "preguntar_edad" ° Para omitir estos dos pasos q eran actualiados do eliminados
+
 def preguntar_cur(message):
     #Cur usuario
     usuarios[message.chat.id] = {}
@@ -40,7 +40,7 @@ def preguntar_ruc(message):
     msg = bot.send_message(message.chat.id, "Ingrese su RUC de Usuario", reply_markup=markup)
     msg = bot.send_message(message.chat.id, "Recuerda que la Cur de usuario te la Brinda nuestra plataforma y es una cadena de palabras similar a esta:\n user-ladh-sdctl-ppy-00001-roluser")
     bot.register_next_step_handler(msg, preguntar_edad)
-    
+
 def preguntar_edad(message):
     #edad usuario
     usuarios[message.chat.id] = {}
@@ -64,6 +64,8 @@ def preguntar_sexo(message):
         markup.add("Masculino", "Femenino", "Otro", "Prefiero No decirlo")
         msg = bot.send_message(message.chat.id, '¿Cual es tu sexo?', reply_markup=markup)
         bot.register_next_step_handler(msg, select_error)
+
+# En Producción en el cambio de estos dos pasos presentamos error de no reconocimiento de la respuesta UNIFIED ANSWER
 
 def select_error(message):
     if message.text != "Masculino" and message.text != "Femenino" and message.text != "Otro" and message.text != "Prefierlo No decirlo":
